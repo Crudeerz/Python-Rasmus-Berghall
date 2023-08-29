@@ -7,3 +7,10 @@ Python Course for **AI23** ITHS
 - Python
 - AI
 
+---
+
+``` python
+print("hej") 
+print("hej") 
+
+``` 
