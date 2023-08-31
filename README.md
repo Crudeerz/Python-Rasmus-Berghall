@@ -16,16 +16,7 @@ print("hej")
 print("hej") 
 print("då")
 ``` 
-### Javascript :confused:
----
-```javascript
-let a = 2; 
-let b = 3;
-let str = "sum ="
 
-console.log(str+a *b);
-
-```
 
 
 
