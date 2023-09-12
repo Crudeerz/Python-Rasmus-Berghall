@@ -1,0 +1,18 @@
+{
+    "firstname": "Rasmus",
+    "lastname": "Berghall",
+    "age": 24,
+    "languages": [
+        "Python",
+        "C#",
+        "Javascript"
+    ],
+    "contactinfo": {
+        "phone": "0708xxxxxx",
+        "email": [
+            "ras@gmail.com",
+            "rasmus@gmail.com",
+            "rasmus.berghall@hotmail.com"
+        ]
+    }
+}
