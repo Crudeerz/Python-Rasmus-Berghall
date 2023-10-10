@@ -20,7 +20,7 @@ class Circle:
     def __eq__(self, other):
         if circle_check_type_comparison(other) is False: return False
        
-        if self._radius == (other if type(other) in [int, float] else other._radius): return True
+        if self.get_area == (other if type(other) in [int, float] else other.get_area): return True
         else: return False
        
 
@@ -28,38 +28,38 @@ class Circle:
     def __le__(self, other):
        if circle_check_type_comparison(other) is False: return False
        
-       if self._radius <= (other if type(other) in [int, float] else other._radius): return True
+       if self.get_area <= (other if type(other) in [int, float] else other.get_area): return True
        else: return False 
 
 
     def __ge__(self, other):
         if circle_check_type_comparison(other) is False: return False
        
-        if self._radius >= (other if type(other) in [int, float] else other._radius): return True
+        if self.get_area >= (other if type(other) in [int, float] else other.get_area): return True
         else: return False
 
 
     def __lt__(self, other):
        if circle_check_type_comparison(other) is False: return False
        
-       if self._radius < (other if type(other) in [int, float] else other._radius): return True
+       if self.get_area < (other if type(other) in [int, float] else other.get_area): return True
        else: return False 
 
 
     def __gt__(self, other):
        if circle_check_type_comparison(other) is False: return False
        
-       if self._radius > (other if type(other) in [int, float] else other._radius): return True
+       if self.get_area > (other if type(other) in [int, float] else other.get_area): return True
        else: return False
 
 
     @property
     def get_area(self):
-        return f"{self._radius **2 * pi:.3f}"
+        return self._radius **2 * pi
 
     @property
     def get_omkrets(self):
-        return f"{self._radius * 2 * pi:.3f}" 
+        return self._radius * 2 * pi 
     
 
     def translate(self, x, y):
@@ -74,6 +74,13 @@ class Circle:
         if ((self._x - self._radius) < x < float(self._x + self._radius)) and (float(self._y - self._radius) < y < float(self._y + self._radius)):     
             return True
         else: return False
+
+    @property
+    def is_unitcircle(self):
+        if (self._x == 0 and self._y == 0) and (self._radius == 1):
+            return True
+        else: return False
+        
 
 
     
@@ -147,6 +154,6 @@ class Rectangle:
     
     def is_inside(self, x, y):
         check_int_float(x, y)
-        if ((self._x - self._side1) < x < float(self._x + self._side1)) and (float(self._y - self._side2) < y < float(self._y + self._side2)):     
+        if ((self._x - self._side1/2) < x < float(self._x + self._side1/2)) and (float(self._y - self._side2/2) < y < float(self._y + self._side2/2)):     
             return True
         else: return False
