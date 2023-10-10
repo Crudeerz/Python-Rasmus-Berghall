@@ -1,5 +1,4 @@
 
-
 def check_int_float(x = None, y = None, z = None, c = None):
      if x is not None:
         if type(x) not in [float, int]:
@@ -15,11 +14,13 @@ def check_int_float(x = None, y = None, z = None, c = None):
             raise ValueError(f"unsupported type for '{c}' : {type(c)}, should be int or float")
 
 def circle_check_type_comparison(other):
+    from geometry_shapes import Circle
 
     if type(other) not in [int, float, Circle]:
-           raise ValueError(f"unsupported operand(s) for comparision with {type(other)}")
+           return False
     
 def rectangle_check_type_comparison(other):
-
+    from geometry_shapes import Rectangle
+    
     if type(other) not in [int, float, Rectangle]:
-           raise ValueError(f"unsupported operand(s) for comparision with {type(other)}")
+           return False
