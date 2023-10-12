@@ -1,8 +1,22 @@
 from math import pi
-from help_functions import check_int_float, circle_check_type_comparison, rectangle_check_type_comparison
+from help_functions import check_int_float, check_type_comparison
 
 
 class Circle:
+    '''
+    Class for Circle-object
+
+    When initializing a Circle you should enter the circles middlepoint in a 2d coordinate system
+    and the length of the sides.
+
+    When comparing the Circle we are comparing area and ignoring the middlepoint (x,y)
+
+                Parameters
+                            x:       (int/float)
+                            y:       (int/float)
+                            radius:  (int/float)
+    
+    '''
     
     def __init__(self, x, y, radius):
         check_int_float(x, y, radius)
@@ -18,7 +32,7 @@ class Circle:
         return f"A circle with the middlepoint: {self._x}, {self._y} and the radius: {self._radius}"
     
     def __eq__(self, other):
-        if circle_check_type_comparison(other) is False: return False
+        if check_type_comparison(other, Circle) is False: return False
        
         if self.get_area == (other if type(other) in [int, float] else other.get_area): return True
         else: return False
@@ -26,28 +40,28 @@ class Circle:
 
        
     def __le__(self, other):
-       if circle_check_type_comparison(other) is False: return False
+       if check_type_comparison(other, Circle) is False: return False
        
        if self.get_area <= (other if type(other) in [int, float] else other.get_area): return True
        else: return False 
 
 
     def __ge__(self, other):
-        if circle_check_type_comparison(other) is False: return False
+        if check_type_comparison(other, Circle) is False: return False
        
         if self.get_area >= (other if type(other) in [int, float] else other.get_area): return True
         else: return False
 
 
     def __lt__(self, other):
-       if circle_check_type_comparison(other) is False: return False
+       if check_type_comparison(other, Circle) is False: return False
        
        if self.get_area < (other if type(other) in [int, float] else other.get_area): return True
        else: return False 
 
 
     def __gt__(self, other):
-       if circle_check_type_comparison(other) is False: return False
+       if check_type_comparison(other, Circle) is False: return False
        
        if self.get_area > (other if type(other) in [int, float] else other.get_area): return True
        else: return False
@@ -61,6 +75,11 @@ class Circle:
     def get_omkrets(self):
         return self._radius * 2 * pi 
     
+    @property
+    def is_unitcircle(self):
+        if self._x == 0 and self._y == 0 and self._radius == 1:
+            return True
+        else: return False
 
     def translate(self, x, y):
         check_int_float(x, y)
@@ -71,24 +90,31 @@ class Circle:
     ## Kolla upp, denna funktion klarar ej alla punkter för en cirkel
     def is_inside(self, x, y):
         check_int_float(x, y)
-        if ((self._x - self._radius) < x < float(self._x + self._radius)) and (float(self._y - self._radius) < y < float(self._y + self._radius)):     
+        if (((self._x - self._radius) < x < (self._x + self._radius)) and
+            ((self._y - self._radius) < y < (self._y + self._radius))):     
             return True
         else: return False
 
-    @property
-    def is_unitcircle(self):
-        if (self._x == 0 and self._y == 0) and (self._radius == 1):
-            return True
-        else: return False
+
         
 
 
-    
-
-
-
-
 class Rectangle:
+    '''
+    Class for Rectangle-object
+
+    When initializing a Rectangle you should enter the rectangles middlepoint in a 2d coordinate system
+    and the length of the sides.
+
+    When comparing the Rectangle we are comparing area and ignoring the middlepoint (x,y)
+
+                Parameters
+                            x:       (int/float)
+                            y:       (int/float)
+                            side1:    (int/float)
+                            side2:    (int/float)
+    
+    '''
     def __init__(self, x, y, side1, side2):
         check_int_float(x, y, side1, side2)
         self._x = x
@@ -103,35 +129,35 @@ class Rectangle:
         return f"A rectangle with the middlepoint: {self._x}, {self._y} and the sides: {self._side1}, {self._side2}"
 
     def __eq__(self, other):
-       if rectangle_check_type_comparison(other) is False: return False
+       if check_type_comparison(other, Rectangle) is False: return False
 
        if self.get_area == (other if type(other) in [int, float] else other.get_area): return True
        else: return False
 
        
     def __le__(self, other):
-       if rectangle_check_type_comparison(other) is False: return False
+       if check_type_comparison(other, Rectangle) is False: return False
        
        if self.get_area <= (other if type(other) in [int, float] else other.get_area): return True
        else: return False 
 
 
     def __ge__(self, other):
-        if rectangle_check_type_comparison(other) is False: return False
+        if check_type_comparison(other, Rectangle) is False: return False
        
         if self.get_area >= (other if type(other) in [int, float] else other.get_area): return True
         else: return False
 
 
     def __lt__(self, other):
-       if rectangle_check_type_comparison(other) is False: return False
+       if check_type_comparison(other, Rectangle) is False: return False
        
        if self.get_area < (other if type(other) in [int, float] else other.get_area): return True
        else: return False 
 
 
     def __gt__(self, other):
-       if rectangle_check_type_comparison(other) is False: return False
+       if check_type_comparison(other, Rectangle) is False: return False
        
        if self.get_area > (other if type(other) in [int, float] else other.get_area): return True
        else: return False
@@ -145,6 +171,9 @@ class Rectangle:
     def get_omkrets(self):
         return self._side1 *2 + self._side2 *2
     
+    @property
+    def is_square(self):
+        return True if self._side1 == self._side2 else False    
 
     def translate(self, x, y):
         check_int_float(x, y)
@@ -154,6 +183,94 @@ class Rectangle:
     
     def is_inside(self, x, y):
         check_int_float(x, y)
-        if ((self._x - self._side1/2) < x < float(self._x + self._side1/2)) and (float(self._y - self._side2/2) < y < float(self._y + self._side2/2)):     
-            return True
+        # Kolla om punkten ligger innanför instansen för objektet
+        if (((self._x - self._side1/2) < x < (self._x + self._side1/2)) and
+            ((self._y - self._side2/2) < y < (self._y + self._side2/2))): 
+            return True  
+        else: return False
+
+
+class Cube:
+    '''
+    Class for Cube-object
+
+    When initializing a Cube you should enter the cubes middlepoint in a 3d coordinate system
+    and the length of the sides.
+
+    When comparing the Cube we are comparing volume and ignoring the middlepoint (x,y,z)
+
+                Parameters
+                            x:       (int/float)
+                            y:       (int/float)
+                            z:       (int/float)
+                            side:    (int/float)
+    
+    '''
+    def __init__(self, x, y, z, side):
+        check_int_float(x, y, z, side)
+        self._x = x
+        self._y = y
+        self._z = z
+        self._side = side
+
+    def __repr__(self):
+        return f"x = {self._x}, y = {self._y}, z = {self._z}, side = {self._side}"
+    
+    def __str__(self):
+        return f"A cube with the middlepoint: {self._x}, {self._y}, {self._z} and the sides: {self._side}"
+
+    def __eq__(self, other):
+       if check_type_comparison(other, Cube) is False: return False
+
+       if self.get_volume == (other if type(other) in [int, float] else other.get_volume): return True
+       else: return False
+
+       
+    def __le__(self, other):
+       if check_type_comparison(other, Cube) is False: return False
+       
+       if self.get_volume <= (other if type(other) in [int, float] else other.get_volume): return True
+       else: return False 
+
+
+    def __ge__(self, other):
+        if check_type_comparison(other, Cube) is False: return False
+       
+        if self.get_volume >= (other if type(other) in [int, float] else other.get_volume): return True
+        else: return False
+
+
+    def __lt__(self, other):
+       if check_type_comparison(other, Cube) is False: return False
+       
+       if self.get_volume < (other if type(other) in [int, float] else other.get_volume): return True
+       else: return False 
+
+
+    def __gt__(self, other):
+       if check_type_comparison(other, Cube) is False: return False
+       
+       if self.get_volume > (other if type(other) in [int, float] else other.get_volume): return True
+       else: return False
+
+
+    @property
+    def get_volume(self):
+        return self._side ** 3
+ 
+
+    def translate(self, x, y, z):
+        check_int_float(x, y, z)
+        
+        self._x = x
+        self._y = y
+        self._z = z
+    
+    def is_inside(self, x, y, z):
+        check_int_float(x, y, z)
+        # Kolla om punkten ligger innanför instansen för objektet
+        if  (((self._x - self._side/2) < x < (self._x + self._side/2)) and 
+             ((self._y - self._side/2) < y < (self._y + self._side/2)) and
+             ((self._z - self._side/2) < z < (self._z + self._side/2))): 
+            return True  
         else: return False
