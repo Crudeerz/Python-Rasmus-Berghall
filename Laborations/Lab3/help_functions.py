@@ -26,23 +26,6 @@ def check_int_float(x = None, y = None, z = None, c = None):
         if type(c) not in [float, int]:
             raise ValueError(f"unsupported type for '{c}' : {type(c)}, should be int or float")
 
-# def circle_check_type_comparison(other):
-#      '''
-#      Checks if 'circle' comparison parameter is applicable for comparison.
-#      Returns False instead of raising error to match example code in lab3 
-
-#                 Parameters: 
-#                             Required: other (int/float,obj)
-
-#                 Returns: 
-#                             False
-#      ''' 
-#      from geometry_shapes import Circle
-
-#      # returning False instead of raising error to match output in code example from laboration
-#      if type(other) not in [int, float, Circle]:
-#         return False
-    
 def check_type_comparison(other, class_name):
      '''
      Checks if 'other' comparison parameter is applicable for comparison.
@@ -56,3 +39,4 @@ def check_type_comparison(other, class_name):
      '''
      if type(other) not in [int, float, class_name]:
            return False
+     

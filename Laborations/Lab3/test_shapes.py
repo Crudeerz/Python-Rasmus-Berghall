@@ -20,6 +20,8 @@ kub2 = Cube(4, 2, 1, 4)
 # print(rektangel1.is_square)
 # print(rektangel2.is_square)
 
-print(kub1.is_inside(4,5,3))
+# print(kub1.is_inside(4,5,3))
+
+
 
 

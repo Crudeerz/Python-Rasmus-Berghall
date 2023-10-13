@@ -1,4 +1,4 @@
-from math import pi
+from math import pi, sqrt
 from help_functions import check_int_float, check_type_comparison
 
 
@@ -87,13 +87,15 @@ class Circle:
         self._x = x
         self._y = y
     
-    ## Kolla upp, denna funktion klarar ej alla punkter för en cirkel
     def is_inside(self, x, y):
         check_int_float(x, y)
-        if (((self._x - self._radius) < x < (self._x + self._radius)) and
-            ((self._y - self._radius) < y < (self._y + self._radius))):     
-            return True
-        else: return False
+
+        # Beräkna distancen mellan punkterna och jämför med radien
+        # för att se om punkten är i cirkeln
+        dist = sqrt((self._x - x)**2 + (self._y - y)**2)
+
+        return True if dist < self._radius else False
+        
 
 
         
@@ -183,6 +185,7 @@ class Rectangle:
     
     def is_inside(self, x, y):
         check_int_float(x, y)
+
         # Kolla om punkten ligger innanför instansen för objektet
         if (((self._x - self._side1/2) < x < (self._x + self._side1/2)) and
             ((self._y - self._side2/2) < y < (self._y + self._side2/2))): 
@@ -268,6 +271,7 @@ class Cube:
     
     def is_inside(self, x, y, z):
         check_int_float(x, y, z)
+        
         # Kolla om punkten ligger innanför instansen för objektet
         if  (((self._x - self._side/2) < x < (self._x + self._side/2)) and 
              ((self._y - self._side/2) < y < (self._y + self._side/2)) and
