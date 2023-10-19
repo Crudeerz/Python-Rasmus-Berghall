@@ -21,15 +21,15 @@ class Circle:
     def __init__(self, x, y, radius):
         check_int_float(x, y, radius)
 
-        self._x = x
-        self._y = y
+        self.x = x
+        self.y = y
         self._radius = radius
 
     def __repr__(self):
-        return f"x = {self._x}, y = {self._y}, radius = {self._radius}"
+        return f"x = {self.x}, y = {self.y}, radius = {self._radius}"
     
     def __str__(self):
-        return f"A circle with the middlepoint: {self._x}, {self._y} and the radius: {self._radius}"
+        return f"A circle with the middlepoint: {self.x}, {self.y} and the radius: {self._radius}"
     
     def __eq__(self, other):
         if check_type_comparison(other, Circle) is False: return False
@@ -77,22 +77,23 @@ class Circle:
     
     @property
     def is_unitcircle(self):
-        if self._x == 0 and self._y == 0 and self._radius == 1:
+        if self.x == 0 and self.y == 0 and self._radius == 1:
             return True
         else: return False
 
+    # Flytta x, y för objektet
     def translate(self, x, y):
         check_int_float(x, y)
         
-        self._x = x
-        self._y = y
+        self.x = x
+        self.y = y
     
+    # Beräkna distancen mellan punkterna och jämför med radien
+    # för att se om punkten är i cirkeln
     def is_inside(self, x, y):
         check_int_float(x, y)
 
-        # Beräkna distancen mellan punkterna och jämför med radien
-        # för att se om punkten är i cirkeln
-        dist = sqrt((self._x - x)**2 + (self._y - y)**2)
+        dist = sqrt((self.x - x)**2 + (self.y - y)**2)
 
         return True if dist < self._radius else False
         
@@ -119,16 +120,16 @@ class Rectangle:
     '''
     def __init__(self, x, y, side1, side2):
         check_int_float(x, y, side1, side2)
-        self._x = x
-        self._y = y
+        self.x = x
+        self.y = y
         self._side1 = side1
         self._side2 = side2
 
     def __repr__(self):
-        return f"x = {self._x}, y = {self._y}, side1 = {self._side1}, side2 = {self._side2}"
+        return f"x = {self.x}, y = {self.y}, side1 = {self._side1}, side2 = {self._side2}"
     
     def __str__(self):
-        return f"A rectangle with the middlepoint: {self._x}, {self._y} and the sides: {self._side1}, {self._side2}"
+        return f"A rectangle with the middlepoint: {self.x}, {self.y} and the sides: {self._side1}, {self._side2}"
 
     def __eq__(self, other):
        if check_type_comparison(other, Rectangle) is False: return False
@@ -180,15 +181,15 @@ class Rectangle:
     def translate(self, x, y):
         check_int_float(x, y)
         
-        self._x = x
-        self._y = y
+        self.x = x
+        self.y = y
     
     def is_inside(self, x, y):
         check_int_float(x, y)
 
         # Kolla om punkten ligger innanför instansen för objektet
-        if (((self._x - self._side1/2) < x < (self._x + self._side1/2)) and
-            ((self._y - self._side2/2) < y < (self._y + self._side2/2))): 
+        if (((self.x - self._side1/2) < x < (self.x + self._side1/2)) and
+            ((self.y - self._side2/2) < y < (self.y + self._side2/2))): 
             return True  
         else: return False
 
@@ -211,16 +212,16 @@ class Cube:
     '''
     def __init__(self, x, y, z, side):
         check_int_float(x, y, z, side)
-        self._x = x
-        self._y = y
-        self._z = z
+        self.x = x
+        self.y = y
+        self.z = z
         self._side = side
 
     def __repr__(self):
-        return f"x = {self._x}, y = {self._y}, z = {self._z}, side = {self._side}"
+        return f"x = {self.x}, y = {self.y}, z = {self.z}, side = {self._side}"
     
     def __str__(self):
-        return f"A cube with the middlepoint: {self._x}, {self._y}, {self._z} and the sides: {self._side}"
+        return f"A cube with the middlepoint: {self.x}, {self.y}, {self.z} and the sides: {self._side}"
 
     def __eq__(self, other):
        if check_type_comparison(other, Cube) is False: return False
@@ -265,17 +266,17 @@ class Cube:
     def translate(self, x, y, z):
         check_int_float(x, y, z)
         
-        self._x = x
-        self._y = y
-        self._z = z
+        self.x = x
+        self.y = y
+        self.z = z
     
     def is_inside(self, x, y, z):
         check_int_float(x, y, z)
 
         # Kolla om punkten ligger innanför instansen för objektet
-        if  (((self._x - self._side/2) < x < (self._x + self._side/2)) and 
-             ((self._y - self._side/2) < y < (self._y + self._side/2)) and
-             ((self._z - self._side/2) < z < (self._z + self._side/2))): 
+        if  (((self.x - self._side/2) < x < (self.x + self._side/2)) and 
+             ((self.y - self._side/2) < y < (self.y + self._side/2)) and
+             ((self.z - self._side/2) < z < (self.z + self._side/2))): 
             return True  
         else: return False
 
@@ -293,21 +294,21 @@ class Sphere:
                             x:       (int/float)
                             y:       (int/float)
                             z:       (int/float)
-                            radius:    (int/float)
+                            radius:  (int/float)
     
     '''
     def __init__(self, x, y, z, radius):
         check_int_float(x, y, z, radius)
-        self._x = x
-        self._y = y
-        self._z = z
+        self.x = x
+        self.y = y
+        self.z = z
         self._radius = radius
 
     def __repr__(self):
-        return f"x = {self._x}, y = {self._y}, z = {self._z}, radius = {self._radius}"
+        return f"x = {self.x}, y = {self.y}, z = {self.z}, radius = {self._radius}"
     
     def __str__(self):
-        return f"A sphere with the middlepoint: {self._x}, {self._y}, {self._z} and the radius: {self._radius}"
+        return f"A sphere with the middlepoint: {self.x}, {self.y}, {self.z} and the radius: {self._radius}"
 
     def __eq__(self, other):
        if check_type_comparison(other, Sphere) is False: return False
@@ -352,16 +353,16 @@ class Sphere:
     def translate(self, x, y, z):
         check_int_float(x, y, z)
         
-        self._x = x
-        self._y = y
-        self._z = z
+        self.x = x
+        self.y = y
+        self.z = z
     
     def is_inside(self, x, y, z):
         check_int_float(x, y, z)
 
         # Beräkna distancen mellan punkterna och jämför med radien
         # för att se om punkten är i cirkeln
-        dist = sqrt((self._x - x)**2 + (self._y - y)**2 + (self._z -z)**2)
+        dist = sqrt((self.x - x)**2 + (self.y - y)**2 + (self.z -z)**2)
         return True if dist < self._radius else False
         
         

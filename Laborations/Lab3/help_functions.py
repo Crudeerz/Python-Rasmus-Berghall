@@ -32,7 +32,8 @@ def check_type_comparison(other, class_name):
      Returns False instead of raising error to match example code in lab3 
 
                 Parameters: 
-                            Required: other (int/float,obj)
+                            Required: other      (int/float,obj)
+                                      class_name (object) eg. Circle
 
                 Returns: 
                             False
